@@ -1,0 +1,25 @@
+name: projectMSGAI
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pytorch
+  - torchvision
+  - torchaudio
+  - ipykernel
+  # - cudatoolkit=11.1  # Adjust this based on your CUDA version
+  - pip:
+      - diffusers
+      - transformers
+      - accelerate
+      - scipy
+      - numpy
+      - pandas
+      - matplotlib
+      - datasets
+      - pyDOE3
+      - torchmetrics
+      - -e . 
+      - torchao
