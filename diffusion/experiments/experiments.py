@@ -105,9 +105,9 @@ class Experiment:
 @dataclass
 class InferenceExperimentConfiguration(ExperimentConfiguration):
 
-    factors = ["image_size", "num_inf_steps"]
-    levels = [[(512, 512)], [20]]
-    repetitions = 1
+    factors = ["image_size", "num_inf_steps", "batch_size"]
+    levels = [[(512, 512), (320, 320)], [15, 25], [16, 4]]
+    repetitions = 2
 
     def check(self):
         super().check()
@@ -129,7 +129,7 @@ class InferenceExperiment(Experiment):
         device, backend = self.get_available_device()
         logger.info(f"Using device: {device} with backend: {backend}")
         generator = torch.Generator(device=device).manual_seed(20)
-        self.service = services.SDService('stable-diffusion-v1-5/stable-diffusion-v1-5', device, torch.float16, generator)
+        self.service = services.SDService('stable-diffusion-v1-5/stable-diffusion-v1-5', device, torch.bfloat16, generator)
 
     def _generate_experiments(self):
        experiments = pyDOE3.fullfact(self.levels_counts)
@@ -145,13 +145,17 @@ class InferenceExperiment(Experiment):
         return name[:-2]
 
     def run(self, **kwargs):
-        self.logger.info("Running experiments\n")
         dataset = self._load_dataset()
-        dataloader = torch.utils.data.DataLoader(dataset, batch_size=2, shuffle=False, num_workers=4, prefetch_factor=10)
+        
         for repetition in range(self.configuration.repetitions):
             for experiment in self.experiment_configs:
+                dataloader = torch.utils.data.DataLoader(dataset, batch_size=4 if experiment["batch_size"] is None else experiment["batch_size"], shuffle=False, num_workers=4, prefetch_factor=10)
                 images, clip_score, runtime_per_batch = self._run_experiment(experiment, dataloader)
-                image_grid = make_image_grid(images[:8], rows=math.ceil(len(images) / 4), cols=4 if len(images) > 4 else len(images))
+                
+                len_to_print = 8 if len(images) >= 8 else 4 if len(images) >= 4 else len(images)
+                images_to_print = images[:len_to_print]
+                
+                image_grid = make_image_grid(images_to_print, rows= math.ceil(len_to_print / 4), cols=4 if len_to_print >= 4 else len_to_print)
                 results = {
                     "experiment": experiment,
                     "clip_score": clip_score,
@@ -171,7 +175,7 @@ class InferenceExperiment(Experiment):
         # load dataset
         dataset = datasets.load_from_disk(os.path.join(curr_path, "../data/PartiPrompts_120"))
 
-        dataset = create_sub_dataset(dataset, 2)
+        # dataset = create_sub_dataset(dataset, 9)
 
         return dataset
 
@@ -187,7 +191,6 @@ class InferenceExperiment(Experiment):
         runtime = []
         for batch in tqdm(dataloader):
             inputs = batch['Prompt']
-            self.logger.info(f"Running batch with prompt: {inputs}")
             start = time.time()
             results = self.service.run(inputs, service_config)
             end = time.time()
