@@ -4,3 +4,4 @@
 **/__pycache__
 **/PartiPrompts_120/cache**
 **.out
+push_to_gce.sh
