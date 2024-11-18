@@ -60,7 +60,7 @@ class SDService(Service):
         self.device = device
 
         # activate when on gpu
-        # compile_pipeline(self.pipeline, with_dynamic_quant=True)
+        # compile_pipeline(self.pipeline, with_dynamic_quant=False)
 
     def _load_pipeline(self, model_path:str, device:torch.device, numerical_precision: torch.dtype) -> DiffusionPipeline:
         """

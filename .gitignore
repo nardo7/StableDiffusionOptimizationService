@@ -4,3 +4,6 @@
 **/__pycache__
 **/PartiPrompts_120/cache**
 **.out
+push_to_gce.sh
+.ipynb_checkpoints
+**/.ipynb_checkpoints
