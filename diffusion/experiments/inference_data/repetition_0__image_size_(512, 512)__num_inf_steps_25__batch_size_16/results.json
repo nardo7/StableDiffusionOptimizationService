@@ -1,0 +1,1 @@
+{"experiment": {"image_size": [512, 512], "num_inf_steps": 25, "batch_size": 16}, "clip_score": 30.3373, "runtime (s)": 22.514360010623932}

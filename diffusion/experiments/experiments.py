@@ -105,8 +105,8 @@ class Experiment:
 @dataclass
 class InferenceExperimentConfiguration(ExperimentConfiguration):
 
-    factors = ["image_size", "num_inf_steps", "batch_size"]
-    levels = [[(512, 512), (320, 320)], [15, 25], [16, 4]]
+    factors = ["batch_size", "num_inf_steps", "image_size"]
+    levels = [[8, 2], [25, 15], [(512, 512), (320, 320)]]
     repetitions = 2
 
     def check(self):
@@ -148,7 +148,7 @@ class InferenceExperiment(Experiment):
         dataset = self._load_dataset()
         
         for repetition in range(self.configuration.repetitions):
-            for experiment in self.experiment_configs:
+            for experiment in tqdm(self.experiment_configs):
                 dataloader = torch.utils.data.DataLoader(dataset, batch_size=4 if experiment["batch_size"] is None else experiment["batch_size"], shuffle=False, num_workers=4, prefetch_factor=10)
                 images, clip_score, runtime_per_batch = self._run_experiment(experiment, dataloader)
                 
@@ -202,7 +202,6 @@ class InferenceExperiment(Experiment):
 
 
 if __name__ == "__main__":
-    print("from main #######################")
     print("Running inference experiment")
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
