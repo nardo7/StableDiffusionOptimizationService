@@ -106,7 +106,7 @@ class Experiment:
 class InferenceExperimentConfiguration(ExperimentConfiguration):
 
     factors = ["batch_size", "num_inf_steps", "image_size"]
-    levels = [[8, 2], [25, 15], [(512, 512), (320, 320)]]
+    levels = [[4, 2], [25, 15], [(512, 512), (320, 320)]]
     repetitions = 2
 
     def check(self):
