@@ -93,7 +93,8 @@ def quantize_lvl(model_id, backbone, quant_level=2.5, enable_conv_3d=True):
                 module.k_bmm_quantizer.disable()
                 module.v_bmm_quantizer.disable()
                 module.softmax_quantizer.disable()
-                module.bmm2_output_quantizer.disable()
+                if model_id != "sd1.5":
+                    module.bmm2_output_quantizer.disable()
                 setattr(module, "_disable_fp8_mha", True)
 
 
