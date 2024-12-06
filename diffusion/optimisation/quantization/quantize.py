@@ -33,6 +33,7 @@ from diffusers import (
     FluxPipeline,
     StableDiffusion3Pipeline,
     StableDiffusionPipeline,
+    PNDMScheduler
 )
 from onnx_utils.export import generate_fp8_scales, modelopt_export_sd
 from utils import check_lora, filter_func, fp8_mha_disable, load_calib_prompts, quantize_lvl
@@ -151,6 +152,7 @@ def main():
         pipe = StableDiffusionPipeline.from_pretrained(
             MODEL_ID[args.model], torch_dtype=torch.float16, safety_checker=None
         )
+        pipe.scheduler = PNDMScheduler.from_config(pipe.scheduler.config)
     elif args.model == "sd3-medium":
         pipe = StableDiffusion3Pipeline.from_pretrained(
             MODEL_ID[args.model], torch_dtype=torch.float16
