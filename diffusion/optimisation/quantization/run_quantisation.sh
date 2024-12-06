@@ -1,6 +1,6 @@
 model=$1
 steps=$2
-python diffusion/optimisation/quantization/quantize.py \
+python quantize.py \
   --model $model \
   --format int8 --batch-size 2 \
   --calib-size 32 --collect-method global_min \
