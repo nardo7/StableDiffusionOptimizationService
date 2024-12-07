@@ -1,14 +1,13 @@
 name: projectMSGAI
 channels:
-  - pytorch
   - conda-forge
   - defaults
 dependencies:
   - python=3.11
   - pip
-  - pytorch::pytorch
-  - pytorch::torchvision
-  - pytorch::torchaudio
+  - pytorch
+  - torchvision
+  - torchaudio
   - ipykernel
   # - cudatoolkit=11.1  # Adjust this based on your CUDA version
   - pip:

@@ -92,3 +92,5 @@ class PercentileCalibrator(MaxCalibrator):
             s += " amaxs={_amaxs}"
         s += ")"
         return s.format(**self.__dict__)
+
+torch.serialization.safe_globals([PercentileCalibrator])
