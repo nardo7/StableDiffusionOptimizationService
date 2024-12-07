@@ -217,5 +217,5 @@ def main():
 
 
 if __name__ == "__main__":
-    torch.serialization.safe_globals([PercentileCalibrator])
+    torch.serialization.add_safe_globals([PercentileCalibrator])
     main()
