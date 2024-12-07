@@ -3,7 +3,13 @@ import torch
 from diffusers import DiffusionPipeline
 from torchao.quantization import  swap_conv2d_1x1_to_linear, quantize_
 from torchao.quantization import int8_dynamic_activation_int8_weight
+from DeepCache import DeepCacheSDHelper
 # most of the code taken from https://huggingface.co/docs/diffusers/en/tutorials/fast_diffusion
+
+def add_cache(pipeline: DiffusionPipeline) -> DeepCacheSDHelper:
+    helper = DeepCacheSDHelper(pipeline)
+    helper.set_params(cache_interval=3, cache_branch_id=0)
+    return helper
 
 def compile_pipeline(pipeline: DiffusionPipeline, with_dynamic_quant=False):
         torch._inductor.config.conv_1x1_as_mm = True

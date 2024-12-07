@@ -71,6 +71,8 @@ class Experiment:
 
         if not results_exists:
             os.makedirs(save_path)
+        elif not self.configuration.overwrite_results:
+            raise ValueError(f"Results file {save_file_path} already exists. Set overwrite_results to True to overwrite the file")
 
         self.logger.info(f"Saving results to {save_file_path}")
         with open(save_file_path, 'w' if results_exists else 'x') as f:
@@ -79,7 +81,15 @@ class Experiment:
         image_file_path = os.path.join(save_path, "image_grid.png")
         image_grid.save(image_file_path)
 
-    
+    def _load_dataset(self):
+        # get current path
+        curr_path = os.path.dirname(os.path.realpath(__file__))
+        # load dataset
+        dataset = datasets.load_from_disk(os.path.join(curr_path, "../data/PartiPrompts_120"))
+
+        # dataset = create_sub_dataset(dataset, 9)
+
+        return dataset
 
     def get_available_device(self) -> tuple[torch.device, str]:
         """Helper method to find best possible hardware to run
@@ -105,8 +115,8 @@ class Experiment:
 @dataclass
 class InferenceExperimentConfiguration(ExperimentConfiguration):
 
-    factors = ["batch_size", "num_inf_steps", "image_size"]
-    levels = [[8, 2], [25, 15], [(512, 512), (320, 320)]]
+    factors = []
+    levels = []
     repetitions = 2
 
     def check(self):
@@ -129,7 +139,7 @@ class InferenceExperiment(Experiment):
         device, backend = self.get_available_device()
         logger.info(f"Using device: {device} with backend: {backend}")
         generator = torch.Generator(device=device).manual_seed(20)
-        self.service = services.SDService('stable-diffusion-v1-5/stable-diffusion-v1-5', device, torch.bfloat16, generator)
+        self.service = services.SDService(device, torch.bfloat16, generator)
 
     def _generate_experiments(self):
        experiments = pyDOE3.fullfact(self.levels_counts)
@@ -165,26 +175,15 @@ class InferenceExperiment(Experiment):
 
     def _calculate_clip_score(self, images, prompts):
         images_np = np.array(images)
-        # print(images_np[0])
         clip_score = clip_score_fn(torch.from_numpy(images_np).permute(0, 3, 1, 2), prompts).detach()
         return round(float(clip_score), 4)
 
-    def _load_dataset(self):
-        # get current path
-        curr_path = os.path.dirname(os.path.realpath(__file__))
-        # load dataset
-        dataset = datasets.load_from_disk(os.path.join(curr_path, "../data/PartiPrompts_120"))
-
-        # dataset = create_sub_dataset(dataset, 9)
-
-        return dataset
-
     def _run_experiment(self, experiment: dict, dataloader: torch.utils.data.dataloader.DataLoader):
         self.logger.info(f"Running experiment: {experiment}")
-        service_config = services.SDServiceConfiguration(model_path=self.service.model_path, 
-                                                         device=self.service.device, 
+        service_config = services.SDServiceConfiguration(device=self.service.device, 
                                                          image_size=experiment["image_size"], 
-                                                         num_inf_steps=experiment["num_inf_steps"])
+                                                         num_inf_steps=experiment["num_inf_steps"],
+                                                         enable_cache=experiment["cache"])
         service_config.check()
         images = []
         clip_scores = []
@@ -215,7 +214,9 @@ if __name__ == "__main__":
     
     config.path = os.path.join(curr_path, "inference_data")
     config.name = "inference_experiment"
-    config.overwrite_results = True
+    config.overwrite_results = False
+    config.factors = [, "cache", "batch_size", "num_inf_steps", "image_size"]
+    config.levels = [[False, True], [8, 2], [25, 15], [(512, 512) (256, 256)]]
     experiment = InferenceExperiment(logger, config)
     experiment.run()
 
