@@ -21,7 +21,7 @@
 
 import argparse
 
-from diffusion.optimisation.quantization.calib.plugin_calib import PercentileCalibrator
+from calib.plugin_calib import PercentileCalibrator
 import torch
 from config import DYNAMIC_SHAPES, get_io_shapes, remove_nesting, update_dynamic_axes
 from diffusers import (
