@@ -54,8 +54,8 @@ MODEL_ID = {
 # You can include the desired arguments for calibration at this point.
 ADDTIONAL_ARGS = {
     "flux-dev": {
-        "height": 1024,
-        "width": 1024,
+        "height": 512,
+        "width": 512,
         "guidance_scale": 3.5,
         "max_sequence_length": 512,
     },
