@@ -286,6 +286,12 @@ SD2_BASE_DYNAMIC_SHAPES = {
     "encoder_hidden_states": {"min": [2, 77, 1024], "opt": [16, 77, 1024]},
 }
 
+SD1_BASE_DYNAMIC_SHAPES = {
+    "sample": {"min": [2, 4, 64, 64], "opt": [16, 4, 64, 64]},
+    "timestep": {"min": [1], "opt": [1]},
+    "encoder_hidden_states": {"min": [2, 77, 768], "opt": [16, 77, 768]},
+}
+
 SD3_DYNAMIC_SHAPES = {
     "hidden_states": {"min": [2, 16, 128, 128], "opt": [16, 16, 128, 128]},
     "timestep": {"min": [2], "opt": [16]},
@@ -341,7 +347,7 @@ DYNAMIC_SHAPES = {
     "sdxl-1.0": create_dynamic_shapes(SDXL_DYNAMIC_SHAPES),
     "sdxl-turbo": create_dynamic_shapes(SDXL_DYNAMIC_SHAPES),
     "sd2.1": create_dynamic_shapes(SD2_DYNAMIC_SHAPES),
-    "sd1.5": create_dynamic_shapes(SD2_BASE_DYNAMIC_SHAPES),
+    "sd1.5": create_dynamic_shapes(SD1_BASE_DYNAMIC_SHAPES),
     "sd2.1-base": create_dynamic_shapes(SD2_BASE_DYNAMIC_SHAPES),
     "sd3-medium": create_dynamic_shapes(SD3_DYNAMIC_SHAPES),
     "flux-dev": create_dynamic_shapes(FLUX_DEV_DYNAMIC_SHAPES),
