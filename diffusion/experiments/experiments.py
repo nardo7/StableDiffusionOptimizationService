@@ -216,7 +216,7 @@ if __name__ == "__main__":
     config.name = "inference_experiment"
     config.overwrite_results = False
     config.factors = ["cache", "batch_size", "num_inf_steps", "image_size"]
-    config.levels = [[False, True], [8, 2], [25, 15], [(512, 512) (256, 256)]]
+    config.levels = [[False, True], [8, 2], [25, 15], [(512, 512), (256, 256)]]
     experiment = InferenceExperiment(logger, config)
     experiment.run()
 
