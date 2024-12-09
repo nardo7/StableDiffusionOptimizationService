@@ -32,6 +32,7 @@ class ExperimentConfiguration:
     path:str = ""
     name:str = ""
     overwrite_results = False
+    dataset_path:str = ""
 
     def check(self):
         """
@@ -42,6 +43,7 @@ class ExperimentConfiguration:
         """
         assert self.path != "" and self.path is not None, "Path must be provided"
         assert self.name != "" and self.name is not None, "Name must be provided"
+        assert self.dataset_path != "" and self.dataset_path is not None, "Dataset path must be provided"
 
         return True
 
@@ -83,9 +85,9 @@ class Experiment:
 
     def _load_dataset(self):
         # get current path
-        curr_path = os.path.dirname(os.path.realpath(__file__))
+        
         # load dataset
-        dataset = datasets.load_from_disk(os.path.join(curr_path, "../data/PartiPrompts_120"))
+        dataset = datasets.load_from_disk(self.configuration.dataset_path)
 
         # dataset = create_sub_dataset(dataset, 9)
 
@@ -218,6 +220,7 @@ if __name__ == "__main__":
     config.overwrite_results = False
     config.factors = ["cache", "batch_size", "num_inf_steps", "image_size"]
     config.levels = [[True], [8, 2], [25, 15], [(512, 512), (256, 256)]]
+    config.dataset_path = os.path.join(curr_path, "../data/PartiPrompts")
     experiment = InferenceExperiment(logger, config)
     experiment.run()
 
