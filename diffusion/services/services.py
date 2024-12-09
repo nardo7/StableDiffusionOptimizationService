@@ -3,6 +3,7 @@ import torch
 from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
 import torch._inductor.config
 from diffusion.optimazition import compile_pipeline, add_cache
+import gc
 
 @dataclass
 class SDServiceConfiguration:
@@ -84,8 +85,11 @@ class SDService(Service):
             for size in sizes:
                 self.last_size = size
                 size = self.__size_to_string(size)
-                self._load_pipeline(self.MODELS_BY_SIZE[size], self.device, self.precision)
+                pipeline = self._load_pipeline(self.MODELS_BY_SIZE[size], self.device, self.precision)
                 self._optimize_pipeline(True)
+                del pipeline
+        gc.collect()
+        torch.cuda.empty_cache()
 
     def __size_to_string(self, image_size:tuple[int, int]) -> str:
         return f"{image_size[0]}x{image_size[1]}"
@@ -127,10 +131,13 @@ class SDService(Service):
         if self.last_size != configuration.image_size:
             self.last_size = configuration.image_size
             size = self.__size_to_string(configuration.image_size)
+            del self.pipeline
             self.pipeline = self._load_pipeline(self.MODELS_BY_SIZE[size], self.device, self.precision)
             self._optimize_pipeline(True)
             self.last_size = configuration.image_size
-        
+            gc.collect()
+            torch.cuda.empty_cache()
+            
         # checking cache settings
         if configuration.enable_cache and not self.is_cache_enabled:
             self.is_cache_enabled = True
