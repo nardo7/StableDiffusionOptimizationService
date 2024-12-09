@@ -21,6 +21,7 @@ from diffusion.data import create_sub_dataset
 import PIL
 import numpy as np
 import math
+import gc
 
 clip_score_fn = partial(clip_score, model_name_or_path="openai/clip-vit-base-patch16")
 
@@ -162,7 +163,7 @@ class InferenceExperiment(Experiment):
         skip = 4
         for repetition in range(self.configuration.repetitions):
             for experiment in tqdm(self.experiment_configs[skip:]):
-                dataloader = torch.utils.data.DataLoader(dataset, batch_size=4 if experiment["batch_size"] is None else experiment["batch_size"], shuffle=False, num_workers=4, prefetch_factor=10)
+                dataloader = torch.utils.data.DataLoader(dataset, batch_size=4 if experiment["batch_size"] is None else experiment["batch_size"], shuffle=False, num_workers=2, prefetch_factor=10)
                 images, clip_scores, runtime = self._run_experiment(experiment, dataloader)
                 
                 len_to_print = 8 if len(images) >= 8 else 4 if len(images) >= 4 else len(images)
@@ -179,6 +180,9 @@ class InferenceExperiment(Experiment):
                     "clip_scores": clip_scores 
                 }
                 self._save_results(repetition, experiment, results, image_grid)
+                del dataloader
+                gc.collect()
+                torch.cuda.empty_cache()
 
     def _calculate_clip_score(self, images, prompts):
         images_np = np.array(images)
