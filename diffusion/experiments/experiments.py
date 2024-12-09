@@ -207,7 +207,7 @@ class InferenceExperiment(Experiment):
             end = time.time()
             runtime[i] = end - start
             
-            images = np.concat([images, np.array(results.images)]) if images.size > 0 else np.array(results.images)
+            images = np.concatenate([images, np.array(results.images)]) if images.size > 0 else np.array(results.images)
             clip_score = self._calculate_clip_score(results.images, batch['Prompt'])
             clip_scores[i] = clip_score
             
