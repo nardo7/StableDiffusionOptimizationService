@@ -159,9 +159,9 @@ class InferenceExperiment(Experiment):
 
     def run(self, **kwargs):
         dataset = self._load_dataset()
-        
+        skip = 2
         for repetition in range(self.configuration.repetitions):
-            for experiment in tqdm(self.experiment_configs):
+            for experiment in tqdm(self.experiment_configs[skip:]):
                 dataloader = torch.utils.data.DataLoader(dataset, batch_size=4 if experiment["batch_size"] is None else experiment["batch_size"], shuffle=False, num_workers=4, prefetch_factor=10)
                 images, clip_scores, runtime = self._run_experiment(experiment, dataloader)
                 
