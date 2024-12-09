@@ -208,7 +208,8 @@ class InferenceExperiment(Experiment):
             end = time.time()
             runtime[i] = end - start
             
-            images = np.concatenate([images, np.array(results.images)]) if images.size > 0 else np.array(results.images)
+            if images.size < 9:
+                images = np.concatenate([images, np.array(results.images)]) if images.size > 0 else np.array(results.images)
             clip_score = self._calculate_clip_score(np.array(results.images), inputs)
             del inputs
             del results.images
