@@ -80,7 +80,10 @@ class SDService(Service):
         Warmup consists of compiling the models for later faster inference and not having to compile them again
         """
         if torch.cuda.is_available():
-            for size in self.MODELS_BY_SIZE:
+            sizes = (256, 256), (512, 512)
+            for size in sizes:
+                self.last_size = size
+                size = self.__size_to_string(size)
                 self._load_pipeline(self.MODELS_BY_SIZE[size], self.device, self.precision)
                 self._optimize_pipeline(True)
 
