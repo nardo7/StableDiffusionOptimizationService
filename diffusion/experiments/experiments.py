@@ -161,7 +161,7 @@ class InferenceExperiment(Experiment):
 
     def run(self, **kwargs):
         dataset = self._load_dataset()
-        skip = 2
+        skip = 3
         for repetition in range(1, self.configuration.repetitions):
             for experiment in tqdm(self.experiment_configs[skip:]):
                 dataloader = torch.utils.data.DataLoader(dataset, batch_size=4 if experiment["batch_size"] is None else experiment["batch_size"], shuffle=False, num_workers=2, prefetch_factor=10)
@@ -188,6 +188,7 @@ class InferenceExperiment(Experiment):
     def _calculate_clip_score(self, images, prompts):
         images_np = np.array(images)
         clip_score = clip_score_fn(torch.from_numpy(images_np).permute(0, 3, 1, 2), prompts).detach()
+        del images_np
         return round(float(clip_score), 4)
 
     def _run_experiment(self, experiment: dict, dataloader: torch.utils.data.dataloader.DataLoader):
@@ -208,7 +209,10 @@ class InferenceExperiment(Experiment):
             runtime[i] = end - start
             
             images = np.concatenate([images, np.array(results.images)]) if images.size > 0 else np.array(results.images)
-            clip_score = self._calculate_clip_score(results.images, batch['Prompt'])
+            clip_score = self._calculate_clip_score(np.array(results.images), inputs)
+            del inputs
+            del results.images
+            del results
             clip_scores[i] = clip_score
             
         return images, clip_scores, runtime
