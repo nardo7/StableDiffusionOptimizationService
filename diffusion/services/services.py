@@ -70,9 +70,19 @@ class SDService(Service):
     def _optimize_pipeline(self, with_dynamic_quant:bool) -> DiffusionPipeline:
         self.cache = add_cache(self.pipeline)
         self.is_cache_enabled = False
-        if torch.cuda.is_available():
-            compile_pipeline(self.pipeline, with_dynamic_quant)
+        # the following is not due to the lack of integration of DeepCache in torch.compile.
+        # there are some opt libraries that provide such things (onediff, TensorRT)
+        # if torch.cuda.is_available():
+        #     compile_pipeline(self.pipeline, with_dynamic_quant)
 
+    def warmup_models(self):
+        """
+        Warmup consists of compiling the models for later faster inference and not having to compile them again
+        """
+        if torch.cuda.is_available():
+            for size in self.MODELS_BY_SIZE:
+                self._load_pipeline(self.MODELS_BY_SIZE[size], self.device, self.precision)
+                self._optimize_pipeline(True)
 
     def __size_to_string(self, image_size:tuple[int, int]) -> str:
         return f"{image_size[0]}x{image_size[1]}"

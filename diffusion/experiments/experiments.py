@@ -140,6 +140,7 @@ class InferenceExperiment(Experiment):
         logger.info(f"Using device: {device} with backend: {backend}")
         generator = torch.Generator(device=device).manual_seed(20)
         self.service = services.SDService(device, torch.bfloat16, generator)
+        self.service.warmup_models()
 
     def _generate_experiments(self):
        experiments = pyDOE3.fullfact(self.levels_counts)
