@@ -17,11 +17,12 @@ import datasets
 from torchmetrics.functional.multimodal import clip_score
 from functools import partial
 import time
-from diffusion.data import create_sub_dataset
+from diffusion.data import create_sub_dataset, PartiPromptDataset
 import PIL
 import numpy as np
 import math
 import gc
+
 
 clip_score_fn = partial(clip_score, model_name_or_path="openai/clip-vit-base-patch16")
 
@@ -88,7 +89,7 @@ class Experiment:
         # get current path
         
         # load dataset
-        dataset = datasets.load_from_disk(self.configuration.dataset_path)
+        dataset = PartiPromptDataset(self.configuration.dataset_path)
 
         # dataset = create_sub_dataset(dataset, 9)
 
@@ -231,7 +232,7 @@ if __name__ == "__main__":
     config.overwrite_results = False
     config.factors = ["cache", "batch_size", "num_inf_steps", "image_size"]
     config.levels = [[True], [8, 2], [25, 15], [(512, 512), (256, 256)]]
-    config.dataset_path = os.path.join(curr_path, "../data/PartiPrompts")
+    config.dataset_path = os.path.join(curr_path, "../data/PartiPrompts.tsv")
     experiment = InferenceExperiment(logger, config)
     experiment.run()
 
