@@ -204,6 +204,9 @@ class InferenceExperiment(Experiment):
 
 
 if __name__ == "__main__":
+    # set an environment variable for this run
+    os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
     print("Running inference experiment")
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
