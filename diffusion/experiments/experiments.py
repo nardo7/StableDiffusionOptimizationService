@@ -163,7 +163,7 @@ class InferenceExperiment(Experiment):
         for repetition in range(self.configuration.repetitions):
             for experiment in tqdm(self.experiment_configs):
                 dataloader = torch.utils.data.DataLoader(dataset, batch_size=4 if experiment["batch_size"] is None else experiment["batch_size"], shuffle=False, num_workers=4, prefetch_factor=10)
-                images, clip_score, runtime_per_batch = self._run_experiment(experiment, dataloader)
+                images, clip_scores, runtime = self._run_experiment(experiment, dataloader)
                 
                 len_to_print = 8 if len(images) >= 8 else 4 if len(images) >= 4 else len(images)
                 images_to_print = images[:len_to_print]
@@ -171,8 +171,12 @@ class InferenceExperiment(Experiment):
                 image_grid = make_image_grid(images_to_print, rows= math.ceil(len_to_print / 4), cols=4 if len_to_print >= 4 else len_to_print)
                 results = {
                     "experiment": experiment,
-                    "clip_score": clip_score,
-                    "runtime (s)": runtime_per_batch
+                    "clip_score": np.mean(clip_scores),
+                    "clip_score variance": np.var(clip_scores),
+                    "runtime (s/b)": np.mean(runtime),
+                    "runtime variance (s/b)": np.var(runtime),
+                    "runtimes":runtime,
+                    "clip_scores": clip_scores 
                 }
                 self._save_results(repetition, experiment, results, image_grid)
 
@@ -200,7 +204,7 @@ class InferenceExperiment(Experiment):
             images = images + results.images
             clip_score = self._calculate_clip_score(results.images, batch['Prompt'])
             clip_scores.append(clip_score)
-        return images, sum(clip_scores) / len(clip_scores), np.mean(runtime)
+        return images, clip_scores, runtime
 
 
 if __name__ == "__main__":
