@@ -1,121 +1,121 @@
 Prompt	Category	Challenge	Note
-bond	Abstract	Basic	Biology-inspired concepts with multiple meanings
-element	Abstract	Basic	Biology-inspired concepts with multiple meanings
-molecule	Abstract	Basic	Biology-inspired concepts with multiple meanings
-life	Abstract	Basic	Biology-inspired concepts with multiple meanings
-protein	Abstract	Basic	Biology-inspired concepts with multiple meanings
-yin-yang	Abstract	Basic	Related to five elements
-wood	Abstract	Basic	Related to five elements
-metal	Abstract	Basic	Related to five elements
-space	Abstract	Basic	Related to five elements
-air	Abstract	Basic	Related to five elements
-an F1	Vehicles	Basic	
-parallel lines	Illustrations	Basic	Math concepts
-concentric circles	Illustrations	Basic	Math concepts
-concurrent lines	Illustrations	Basic	Math concepts
-congruent triangles	Illustrations	Basic	Math concepts
-a hot air balloon	Vehicles	Basic	
-The Starry Night	Arts	Basic	
-U.S. 101	World Knowledge	Basic	Simple numbers but challenging
-Salvador Dalí	People	Basic	
-a shiba inu	Animals	Basic	
-a handpalm	People	Basic	
-an espresso machine	Artifacts	Basic	
-a propaganda poster	Artifacts	Basic	
-The Oriental Pearl	World Knowledge	Basic	CogView
-Ha Long Bay	World Knowledge	Basic	
-A Vietnam map	World Knowledge	Basic	
-A bowl of Pho	Food & Beverage	Basic	
-a snail	Animals	Basic	
-brain coral	Animals	Basic	
-a walnut	Produce & Plants	Basic	
-a capybara	Animals	Basic	
-a baby penguin	Animals	Basic	
-a cup of boba	Food & Beverage	Basic	
-a photo of san francisco's golden gate bridge	World Knowledge	Basic	DALL-E
-A picture of some food in the plate	Food & Beverage	Basic	VQ-Diffusion
-a chair	Artifacts	Basic	
-the Empire State Building	World Knowledge	Basic	
+a rabbit wearing a black tophat and monocle	Animals	Imagination	
+a surrealist dream-like oil painting by salvador dalí of a cat playing checkers	Arts	Style & Format	GLIDE
+a chest	Artifacts	Basic	
 the Sydney Opera House	World Knowledge	Basic	
-a hedgehog	Animals	Basic	
-a corgi	Animals	Basic	
-a robot	Artifacts	Basic	
-robots	Artifacts	Basic	
-a fall landscape	Outdoor Scenes	Basic	
-a sunset	Outdoor Scenes	Basic	
-a boat	Vehicles	Basic	
-a fox	Animals	Basic	
-a red cube	Illustrations	Basic	
-a panda	Animals	Basic	
-a space elevator	Artifacts	Basic	GLIDE
-a city	Outdoor Scenes	Basic	
-a fog	Outdoor Scenes	Basic	
-a clock	Artifacts	Basic	
-a phone	Artifacts	Basic	
-food	Food & Beverage	Basic	
-a store front	Outdoor Scenes	Basic	
-an armchair	Artifacts	Basic	
-a teapot	Artifacts	Basic	
-a tiger	Animals	Basic	
-an orange	Produce & Plants	Basic	
-a train	Vehicles	Basic	
-a submarine	Vehicles	Basic	
-a car	Vehicles	Basic	
-a canal	Outdoor Scenes	Basic	
-the grand canyon	World Knowledge	Basic	
-lily pads	Produce & Plants	Basic	
-a street	Outdoor Scenes	Basic	
-a house	Outdoor Scenes	Basic	
-a city intersection	Outdoor Scenes	Basic	
-a circle	Illustrations	Basic	
-a red circle	Illustrations	Basic	
-a box	Illustrations	Basic	
-a yellow box	Illustrations	Basic	
-a red box	Illustrations	Basic	
-a pumpkin	Produce & Plants	Basic	
-a cocktail	Food & Beverage	Basic	
-a margarita	Food & Beverage	Basic	
-an avocado	Produce & Plants	Basic	
-a kitchen	Indoor Scenes	Basic	
-a banana	Produce & Plants	Basic	
-a room	Indoor Scenes	Basic	
-a mountain	Outdoor Scenes	Basic	
-The Statue of Liberty	World Knowledge	Basic	
-the Eiffel Tower	World Knowledge	Basic	
-a pineapple	Produce & Plants	Basic	
-a pirate ship	Vehicles	Basic	
-a wood cabin	Indoor Scenes	Basic	
-a roast turkey	Food & Beverage	Basic	
-an F1 race car	Vehicles	Basic	
-a taxi	Vehicles	Basic	
-a living room	Indoor Scenes	Basic	
-a tree	Produce & Plants	Basic	
-a rowboat	Vehicles	Basic	
-orange juice	Food & Beverage	Basic	
-a green pepper	Food & Beverage	Basic	
-beer	Food & Beverage	Basic	
+a cloud in the shape of a castle	Outdoor Scenes	Style & Format	
+a black towel with a dog on it	Artifacts	Simple Detail	
+a horse	Animals	Basic	
+a diagram of the Great Wall	World Knowledge	Style & Format	
+a pick-up truck	Vehicles	Basic	
+the Kremlin at night	World Knowledge	Simple Detail	
+A smiling sloth wearing a bowtie and holding a quarterstaff and a big book. A shiny VW van parked on grass.	World Knowledge	Fine-grained Detail	
+an overhead view of the Empire State Building	World Knowledge	Perspective	
+a white cat with black ears and markings	Animals	Fine-grained Detail	
+a pair of glasses under a computer monitor	Artifacts	Simple Detail	
+the skyline of New York City	World Knowledge	Fine-grained Detail	
+a car with no windows	Vehicles	Linguistic Structures	Negation
+a child and a penguin sitting on the moon	People	Imagination	
+A photo of a hamburger fighting a hot dog in a boxing ring. The hot dog is tired and up against the ropes.	Food & Beverage	Complex	
+a wooden toy horse with a mane made of rope	Artifacts	Fine-grained Detail	
+a wooden post	Artifacts	Basic	
+a sweatshirt	Artifacts	Basic	
+Times Square with thousands of dogs running around	World Knowledge	Quantity	
+a Christmas tree on a toy train	Artifacts	Imagination	
+a brown trash bin with a green compost bin on its left and a blue recycling bin on its right	Artifacts	Complex	
+an abstract painting of the lights at Times Square	World Knowledge	Style & Format	
+three quarters view of a rusty old red pickup truck with white doors and a smashed windshield	Vehicles	Perspective	
+We painted the wall with cracks.	People	Linguistic Structures	Garden-path sentences
+a chopper decorated with the Stars and Stripes	Vehicles	Fine-grained Detail	
+fire	Abstract	Basic	Related to five elements
+five frosted glass bottles	Artifacts	Quantity	
+a hammer on a table	Artifacts	Simple Detail	
+A smiling sloth is wearing a leather jacket, a cowboy hat, a kilt and a bowtie. The sloth is holding a quarterstaff and a big book. The sloth is standing on grass a few feet in front of a shiny VW van with flowers painted on it. wide-angle lens from below.	World Knowledge	Perspective	
+a girl with curly black hair jumping off a boulder	People	Complex	
 a plant	Produce & Plants	Basic	
-a flower	Produce & Plants	Basic	
-a ceiling fan	Indoor Scenes	Basic	
-a team	People	Basic	
-a child	People	Basic	
-a man	People	Basic	
-a woman	People	Basic	
-a girl	People	Basic	
-a person	People	Basic	
-a boy	People	Basic	
-a boy and a tiger	People	Basic	
-A solitary figure shrouded in mists peers up from the cobble stone street at the imposing and dark gothic buildings surrounding it. an old-fashioned lamp shines nearby. oil painting.	Arts	Complex	
-A richly textured oil painting of a young badger delicately sniffing a yellow rose next to a tree trunk. A small waterfall can be seen in the background.	Arts	Complex	
-A raccoon wearing formal clothes, wearing a tophat and holding a cane. The raccoon is holding a garbage bag. Oil painting in the style of abstract cubism.	Arts	Complex	
+a tiger in a forest	Animals	Simple Detail	
+A penguin wearing aviator goggles and flying confidently next to a bemused eagle. 	Animals	Complex	
+supercalifragilisticexpialidocious	Abstract	Linguistic Structures	Mary Poppins described it as the word to use “when you have nothing to say.”
+a train	Vehicles	Basic	
+a thumbnail image of an ice cream cone	Illustrations	Style & Format	
+a kids' book cover with an illustration of white dog driving a red pickup truck	Illustrations	Fine-grained Detail	
+a painting of an ornate treasure chest with a broad sword propped up against it, glowing in a dark cave	Arts	Complex	
+a horse without a rider	Animals	Linguistic Structures	Negation
+a brown mouse laughing at a gray cat because a 16 ton weight is about to fall on its head	Animals	Linguistic Structures	
+a old-time car with a large front grille	Vehicles	Fine-grained Detail	
+a subway train	Vehicles	Simple Detail	
+a cartoon of a bear birthday party	Animals	Style & Format	
 A raccoon wearing formal clothes, wearing a tophat and holding a cane. The raccoon is holding a garbage bag. Oil painting in the style of Egyptian tomp hieroglyphics.	Arts	Complex	
+Downtown LA at sunrise. detailed ink wash.	World Knowledge	Style & Format	
+a roast turkey on the table	Food & Beverage	Simple Detail	
+overhead view of three people looking down at the street from the top of a tall building	People	Perspective	
+a submarine	Vehicles	Basic	
+a robot cooking in the kitchen	Indoor Scenes	Simple Detail	
+a flower with large yellow petals	Produce & Plants	Simple Detail	
+a hamster dragon	Animals	Imagination	
+the hands of a single person holding a basketball	People	Quantity	
+a hot air balloon	Vehicles	Basic	
+A photograph of the inside of a subway train. There are frogs sitting on the seats. One of them is reading a newspaper. The window shows the river in the background.	Vehicles	Complex	
+A dog gives an apple to a squirrel	Animals	Linguistic Structures	Ditransitive verbs
+a portrait of a man wearing sunglasses and a business suit, painting in pop art style	People	Style & Format	
 A raccoon wearing formal clothes, wearing a tophat and holding a cane. The raccoon is holding a garbage bag. Oil painting in the style of Hokusai.	Arts	Complex	
-A raccoon wearing formal clothes, wearing a tophat and holding a cane. The raccoon is holding a garbage bag. Oil painting in the style of Madhubani art.	Arts	Complex	
-A raccoon wearing formal clothes, wearing a tophat and holding a cane. The raccoon is holding a garbage bag. Oil painting in the style of pixel art.	Arts	Complex	
-A raccoon wearing formal clothes, wearing a tophat and holding a cane. The raccoon is holding a garbage bag. Oil painting in the style of pointilism.	Arts	Complex	
-A raccoon wearing formal clothes, wearing a tophat and holding a cane. The raccoon is holding a garbage bag. Oil painting in the style of Rembrandt.	Arts	Complex	
-A wall in a royal castle. There are two paintings on the wall. The one on the left a detailed oil painting of the royal raccoon king. The one on the right a detailed oil painting of the royal raccoon queen. A cute dog looking at the two paintings, holding a sign saying 'plz conserve'	Indoor Scenes	Complex	
-A single beam of light enter the room from the ceiling. The beam of light is illuminating an easel. On the easel there is a Rembrandt painting of a raccoon	Indoor Scenes	Complex	
+a dutch baroque painting of a horse in a field of flowers	Arts	Style & Format	
+ten red apples	Produce & Plants	Quantity	
+Photograph of a wall along a city street with a watercolor mural of foxes in a jazz band.	Outdoor Scenes	Complex	
+five green peppers to the right of two red onions	Food & Beverage	Quantity	
+a wine bottle with a red ribbon wrapped around it	Food & Beverage	Fine-grained Detail	
+a long-island ice tea cocktail next to a napkin	Food & Beverage	Fine-grained Detail	
 A cozy living room with a painting of a corgi on the wall above a couch and a round coffee table in front of a couch and a vase of flowers on a coffee table	Indoor Scenes	Complex	
-A high resolution photo of a donkey in a clown costume giving a lecture at the front of a lecture hall. The blackboard has mathematical equations on it. There are many students in the lecture hall.	Indoor Scenes	Complex	
-An empty fireplace with a television above it. The TV shows a lion hugging a giraffe.	Indoor Scenes	Complex	
+artificial intelligence	Abstract	Basic	
+a three quarters view of a man getting into a car	People	Perspective	
+A tornado made of tigers crashing into a skyscraper. painting in the style of abstract cubism.	Arts	Imagination	
+fairy cottage with smoke coming up chimney and a squirrel looking from the window	Outdoor Scenes	Fine-grained Detail	
+two runners crossing the finish line together	People	Quantity	
+wood	Abstract	Basic	Related to five elements
+the words 'KEEP OFF THE GRASS' on a sign next to a lawn	Outdoor Scenes	Writing & Symbols	
+a sad man with green hair	People	Simple Detail	
+A tornado made of bees crashing into a skyscraper. painting in the style of abstract cubism.	Arts	Imagination	
+a coffee table with a magazine on it	Indoor Scenes	Simple Detail	
+0	Abstract	Basic	Simple numbers but challenging
+A bowl of soup that looks like a monster made out of plasticine	Food & Beverage	Imagination	
+a pineapple with one beer to its left and two beers on its right	Food & Beverage	Complex	
+a mixed media image with a photograph of a woman with long orange hair over a background that is a sketch of a city skyline	People	Complex	
+a painting of a sport car in the style of Monet	Arts	Style & Format	
+a fall landscape	Outdoor Scenes	Basic	
+a blue wooden pyramid on top of a red plastic box	Illustrations	Properties & Positioning	
+A heart made of cookie	Illustrations	Simple Detail	VQ-Diffusion
+a tree	Produce & Plants	Basic	
+a square with an angry face	Illustrations	Imagination	
+Sunset over the sea	Outdoor Scenes	Simple Detail	VQ-Diffusion
+a plant with small flowers with purple petals	Produce & Plants	Simple Detail	
+a ceiling fan with four white blades	Indoor Scenes	Quantity	
+a young badger delicately sniffing a yellow rose, richly textured oil painting	Arts	Fine-grained Detail	
+a horse in a field of flowers	Outdoor Scenes	Simple Detail	
+a red block to the left of a blue pyramid	Illustrations	Properties & Positioning	
+A richly textured oil painting of a young badger delicately sniffing a yellow rose next to a tree trunk. A small waterfall can be seen in the background.	Arts	Complex	
+"The saying ""BE EXCELLENT TO EACH OTHER"" written in faded paint on the hull of an old wooden boat and reflected in the water. Wide-angle lens."	Illustrations	Writing & Symbols	
+a wooden post in front of a patch of tall grass	Outdoor Scenes	Writing & Symbols	
+a photograph of sand with a bucket, lots of scattered shells but no sandpipers	Outdoor Scenes	Fine-grained Detail	
+a grand piano with a white bench	Indoor Scenes	Simple Detail	
+a pitcher of orange juice	Food & Beverage	Simple Detail	
+a metallic blue sphere to the left of a yellow box made of felt	Illustrations	Properties & Positioning	
+"the saying ""BE EXCELLENT TO EACH OTHER"" on a rough wall with a graffiti image of a green alien wearing a tuxedo."	Outdoor Scenes	Writing & Symbols	
+a red box	Illustrations	Basic	
+a smiling banana wearing a bandana	Produce & Plants	Imagination	
+a living room with a large Egyptian statue in the corner	Indoor Scenes	Fine-grained Detail	
+a logo	Illustrations	Basic	
+a bunch of laptops piled on a sofa	Indoor Scenes	Quantity	
+a glass of orange juice with an orange peel stuck on the rim	Food & Beverage	Fine-grained Detail	
+orange jello	Food & Beverage	Simple Detail	
+a small garden with an apple tree behind it	Produce & Plants	Fine-grained Detail	
+gender	Abstract	Basic	
+yin-yang	Abstract	Basic	Related to five elements
+protein	Abstract	Basic	Biology-inspired concepts with multiple meanings
+Incomprehensibilities	Abstract	Linguistic Structures	
+a kitchen with a large refrigerator	Indoor Scenes	Simple Detail	
+42	Abstract	Basic	Simple numbers but challenging
+a banana without its peel	Produce & Plants	Linguistic Structures	Negation
+a small tree covered in white blossoms	Produce & Plants	Simple Detail	
+several lily pads without frogs	Produce & Plants	Linguistic Structures	Negation
+a room	Indoor Scenes	Basic	
+a kitchen	Indoor Scenes	Basic	
