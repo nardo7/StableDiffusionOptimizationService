@@ -161,7 +161,7 @@ class InferenceExperiment(Experiment):
 
     def run(self, **kwargs):
         dataset = self._load_dataset()
-        skip = 3
+        skip = 4
         for repetition in range(1, self.configuration.repetitions):
             for experiment in tqdm(self.experiment_configs[skip:]):
                 dataloader = torch.utils.data.DataLoader(dataset, batch_size=4 if experiment["batch_size"] is None else experiment["batch_size"], shuffle=False, num_workers=2, prefetch_factor=10)
@@ -239,7 +239,7 @@ if __name__ == "__main__":
     config.overwrite_results = False
     config.factors = ["cache", "batch_size", "num_inf_steps", "image_size"]
     config.levels = [[True], [8, 2], [25, 15], [(512, 512), (256, 256)]]
-    config.dataset_path = os.path.join(curr_path, "../data/PartiPrompts.tsv")
+    config.dataset_path = os.path.join(curr_path, "../data/PartiPrompt_120.tsv")
     experiment = InferenceExperiment(logger, config)
     experiment.run()
 
