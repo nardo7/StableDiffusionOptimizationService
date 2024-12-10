@@ -91,7 +91,7 @@ class Experiment:
         # load dataset
         dataset = PartiPromptDataset(self.configuration.dataset_path)
 
-        # dataset = create_sub_dataset(dataset, 9)
+        # dataset = create_sub_dataset(dataset, 11)
 
         return dataset
 
@@ -166,11 +166,11 @@ class InferenceExperiment(Experiment):
             for experiment in tqdm(self.experiment_configs[skip:]):
                 dataloader = torch.utils.data.DataLoader(dataset, batch_size=4 if experiment["batch_size"] is None else experiment["batch_size"], shuffle=False, num_workers=2, prefetch_factor=10)
                 images, clip_scores, runtime = self._run_experiment(experiment, dataloader)
-                
+                print("Images shape", images.shape)
                 len_to_print = 8 if len(images) >= 8 else 4 if len(images) >= 4 else len(images)
                 images_to_print = images[:len_to_print]
                 
-                image_grid = make_image_grid([PIL.Image.fromarray(img) for img in images_to_print], rows= math.ceil(len_to_print / 4), cols=4 if len_to_print >= 4 else len_to_print)
+                image_grid = make_image_grid([PIL.Image.fromarray((img * 255).astype(np.uint8)) for img in images_to_print], rows= math.ceil(len_to_print / 4), cols=4 if len_to_print >= 4 else len_to_print)
                 results = {
                     "experiment": experiment,
                     "clip_score": np.mean(clip_scores),
@@ -186,7 +186,7 @@ class InferenceExperiment(Experiment):
                 torch.cuda.empty_cache()
 
     def _calculate_clip_score(self, images, prompts):
-        images_np = np.array(images)
+        images_np = np.array(images * 255).astype(np.uint8)
         clip_score = clip_score_fn(torch.from_numpy(images_np).permute(0, 3, 1, 2), prompts).detach()
         del images_np
         return round(float(clip_score), 4)
@@ -208,7 +208,7 @@ class InferenceExperiment(Experiment):
             end = time.time()
             runtime[i] = end - start
             
-            if images.size < 9:
+            if images.shape[0] < 9:
                 images = np.concatenate([images, np.array(results.images)]) if images.size > 0 else np.array(results.images)
             clip_score = self._calculate_clip_score(np.array(results.images), inputs)
             del inputs

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 import torch
-from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
+from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler
 import torch._inductor.config
 from diffusion.optimazition import compile_pipeline, add_cache
 import gc
@@ -68,7 +68,7 @@ class SDService(Service):
 
         self._optimize_pipeline(with_dynamic_quant=False)
 
-    def _optimize_pipeline(self, with_dynamic_quant:bool) -> DiffusionPipeline:
+    def _optimize_pipeline(self, with_dynamic_quant:bool) -> StableDiffusionPipeline:
         self.cache = add_cache(self.pipeline)
         self.is_cache_enabled = False
         # the following is not due to the lack of integration of DeepCache in torch.compile.
@@ -94,7 +94,7 @@ class SDService(Service):
     def __size_to_string(self, image_size:tuple[int, int]) -> str:
         return f"{image_size[0]}x{image_size[1]}"
 
-    def _load_pipeline(self, model_path:str, device:torch.device, numerical_precision: torch.dtype) -> DiffusionPipeline:
+    def _load_pipeline(self, model_path:str, device:torch.device, numerical_precision: torch.dtype) -> StableDiffusionPipeline:
         """
         Load the service model
 
@@ -103,7 +103,7 @@ class SDService(Service):
             device (torch.device): The device to run the service model
             numerical_precision (torch.dtype): The numerical precision to run the service model
         """
-        pipeline = DiffusionPipeline.from_pretrained(
+        pipeline = StableDiffusionPipeline.from_pretrained(
             model_path, 
             torch_dtype=numerical_precision, 
             use_safetensors=True if self.last_size != (256, 256) else False).to(device)
@@ -147,4 +147,4 @@ class SDService(Service):
             self.is_cache_enabled = False
 
         # run the inference
-        return self.pipeline(prompts, num_inference_steps=configuration.num_inf_steps, height=configuration.image_size[0], width=configuration.image_size[1], generator=self.generator)
+        return self.pipeline(prompts, output_type="np", num_inference_steps=configuration.num_inf_steps, height=configuration.image_size[0], width=configuration.image_size[1], generator=self.generator)
