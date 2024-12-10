@@ -239,7 +239,7 @@ if __name__ == "__main__":
     config.overwrite_results = False
     config.factors = ["cache", "batch_size", "num_inf_steps", "image_size"]
     config.levels = [[True], [8, 2], [25, 15], [(512, 512), (256, 256)]]
-    config.dataset_path = os.path.join(curr_path, "../data/PartiPrompt_120.tsv")
+    config.dataset_path = os.path.join(curr_path, "../data/PartiPrompts_120.tsv")
     experiment = InferenceExperiment(logger, config)
     experiment.run()
 
