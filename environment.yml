@@ -15,7 +15,7 @@ dependencies:
       - transformers
       - accelerate
       - scipy
-      - numpy
+      - numpy==1.26.4
       - pandas
       - matplotlib
       - datasets
@@ -23,4 +23,4 @@ dependencies:
       - torchmetrics
       - -e . 
       - torchao
-      - triton
+      - DeepCache

@@ -1,6 +1,6 @@
-import datasets
+from torch.utils.data import Dataset, random_split
 
-def create_sub_dataset(dataset: datasets.Dataset, sub_size: int) -> datasets.Dataset:
+def create_sub_dataset(dataset: Dataset, sub_size: int) -> Dataset:
     """
     Create a sub-dataset with a specified number of examples from another dataset.
 
@@ -11,10 +11,7 @@ def create_sub_dataset(dataset: datasets.Dataset, sub_size: int) -> datasets.Dat
     Returns:
         datasets.Dataset: A new dataset containing the specified number of examples.
     """
-    # Calculate the proportion of the dataset to include in the sub-dataset
-    sub_proportion = sub_size / len(dataset)
-
     # Use train_test_split to create the sub-dataset
-    sub_dataset = dataset.train_test_split(test_size=1 - sub_proportion, seed=42)['train']
-
+    sub_dataset, _ = random_split(dataset, [sub_size, len(dataset) - sub_size])
     return sub_dataset
+

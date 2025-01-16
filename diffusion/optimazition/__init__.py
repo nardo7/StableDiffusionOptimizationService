@@ -1,1 +1,1 @@
-from .compilation import compile_pipeline
+from .compilation import compile_pipeline, add_cache
